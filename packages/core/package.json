@@ -1,0 +1,8 @@
+{
+  "name": "@armariospagina/core",
+  "version": "0.0.1",
+  "main": "ArmariosPagina Core",
+  "repository": "https://github.com/guesant/armariospagina.git",
+  "author": "Gabriel Rodrigues <jipacoding@gmail.com>",
+  "license": "GPL-3.0"
+}
