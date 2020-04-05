@@ -5,5 +5,7 @@
 </template>
 
 <style lang="scss">
-@import url("~@/assets/scss/starter.scss");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 </style>
