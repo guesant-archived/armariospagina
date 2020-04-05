@@ -1,4 +1,9 @@
-import { loadJimp, imageSizeFromJimp, jimpApplyFx } from './lib';
+import {
+  loadJimp,
+  imageSizeFromPostion,
+  imageSizeFromJimp,
+  jimpApplyFx,
+} from './lib';
 import { ArmariosPaginaCoreOptions } from './types';
 import { generateValidator } from './lib/node-assert';
 
@@ -34,6 +39,12 @@ export default async (options: ArmariosPaginaCoreOptions) => {
 
     // create an empty image with the size of the base
     const plank = await loadJimp([...imageSizeFromJimp(base), '#0000']);
+
+    // resize image to fit into the especified position
+    source[model.compose.fillmode || 'resize'](...imageSizeFromPostion(model));
+
+    // compose the source to the plank at specified position
+    plank.composite(source, ...model.compose.start);
 
     // apply fx to the plank
     jimpApplyFx(options, model.postFx, plank);
