@@ -1,3 +1,4 @@
+import * as assert from './node-assert';
 import loadJimp from './load-jimp';
 
-export { loadJimp };
+export { assert, loadJimp };
