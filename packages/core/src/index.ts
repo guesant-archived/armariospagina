@@ -46,6 +46,11 @@ export default async (options: ArmariosPaginaCoreOptions) => {
     // compose the source to the plank at specified position
     plank.composite(source, ...model.compose.start);
 
+    // apply mask to the plank
+    if (mask) {
+      plank.mask(mask, 0, 0);
+    }
+
     // apply fx to the plank
     jimpApplyFx(options, model.postFx, plank);
 
