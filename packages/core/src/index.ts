@@ -24,5 +24,10 @@ export default async (options: ArmariosPaginaCoreOptions) => {
   const { template, sources } = options;
   const base = await loadJimp(template.base);
 
+  for (const i in template.sources) {
+    const model = template.sources[i];
+    const mask = template.mask ? await loadJimp(template.mask) : undefined;
+    const source = await loadJimp(sources[i]);
+  }
   return base;
 };
