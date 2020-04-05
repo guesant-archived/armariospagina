@@ -57,5 +57,10 @@ export default async (options: ArmariosPaginaCoreOptions) => {
     // compose plank image to the base
     base.composite(plank, 0, 0, model.compose.blendMode);
   }
+
+  if (options.write && options.write.trim()) {
+    base.write(options.write);
+  }
+
   return base;
 };
