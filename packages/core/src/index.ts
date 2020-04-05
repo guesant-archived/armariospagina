@@ -1,4 +1,4 @@
-import { loadJimp } from './lib';
+import { loadJimp, jimpApplyFx } from './lib';
 import { ArmariosPaginaCoreOptions } from './types';
 import { generateValidator } from './lib/node-assert';
 
@@ -28,6 +28,9 @@ export default async (options: ArmariosPaginaCoreOptions) => {
     const model = template.sources[i];
     const mask = template.mask ? await loadJimp(template.mask) : undefined;
     const source = await loadJimp(sources[i]);
+
+    // apply fx to the source
+    jimpApplyFx(options, model.preFx, source);
   }
   return base;
 };
