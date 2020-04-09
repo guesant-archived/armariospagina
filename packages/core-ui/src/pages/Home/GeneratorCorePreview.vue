@@ -7,10 +7,26 @@
     <div class="p-3">
       <div v-if="generator.selectedTemplate.data">
         <div class="flex justify-center pt-2">
-          <img class="object-contain h-40 bg-black" :src="generator.preview" />
+          <img class="object-contain h-40 bg-gray-800 w-40" :src="generator.preview" />
         </div>
-        <div class="flex justify-center">
-          <button class="font-bold text-xs p-4 rounded">Baixar Imagem</button>
+        <div class="p-2 pt-4">
+          <div v-if="generator.message">
+            <p class="text-center">{{generator.message}}</p>
+          </div>
+          <div v-else>
+            <div v-if="!generator.selectedTemplate.data.base">
+              <p class="text-center font-bold">por favor, selecione um template</p>
+            </div>
+
+            <div v-else-if="(generator.selectedTemplate.sources||[]).filter(i => i).length < generator.selectedTemplate.data.sources.length">
+              <p class="text-center font-bold">O template necessita de {{generator.selectedTemplate.data.sources.length}} source{{generator.selectedTemplate.data.sources.length === 1 ? '' : 's'}}.</p>
+            </div>
+
+            <div v-else class="flex justify-center text-center flex-col">
+              <a class="font-bold text-xs p-2 rounded" download="armariosmeme.png" :href="generator.preview">Baixar Imagem</a>
+              <button class="font-bold text-xs p-2 rounded" @click="preview">Atualizar preview</button>
+            </div>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -25,9 +41,9 @@ import { mapState, mapActions } from 'vuex';
 export default {
   computed: mapState(['generator']),
   methods: {
-    ...mapActions({
-      resetTemplate: 'generator/resetTemplate'
-    })
+    ...mapActions('generator', [
+      'preview',
+    ])
   }
 }
 </script>

@@ -2,6 +2,7 @@ import armariosCore from '@armariospagina/core';
 
 const state = {
   preview: '',
+  message: '',
   selectedTemplate: {
     data: {
       base: '',
@@ -22,23 +23,33 @@ const getters = {
   sources(state) {
     return state.selectedTemplate.sources || [];
   },
-  }
 }
 
 // actions
 const actions = {
-  async autoPreview({ state, commit, rootState }) {
+  async preview({ state, commit }) {
+    commit('setMessage', 'Gerando preview...');
+    const b64 = await armariosCore({
+      template: state.selectedTemplate.data,
+      sources: state.selectedTemplate.sources
+    }).then(image => image.getBase64Async('image/jpeg'));
+
+    commit('setPreview', b64);
+    commit('setMessage', '');
+  },
+  async autoPreview({ dispatch, rootState }) {
     if (rootState.settings.options.preview) {
-      await armariosCore({
-        template: state.selectedTemplate.data,
-        sources: state.selectedTemplate.sources
-      })
-        .then(image => image.getBase64Async('image/jpeg'))
-        .then(b64 => commit('setPreview', b64));
+      await dispatch('preview')
     }
   },
-  loadTemplate({ commit }, templateData) {
-    commit('changeTemplate', { data: JSON.parse(templateData) })
+  loadTemplate({ commit, state, dispatch }, templateData) {
+    commit('changeTemplate', { data: typeof templateData === 'string' ? JSON.parse(templateData) : templateData })
+    
+    commit('changeTemplate', {
+      data: state.selectedTemplate.data,
+      sources: Array(state.selectedTemplate.data.sources.length).fill('').map(() => ([1, 1, '#FFFF']))
+    })
+    dispatch('preview');
   },
   resetTemplate({ commit }) {
     commit('changeTemplate', { data: false })
@@ -56,6 +67,9 @@ const mutations = {
   },
   setPreview(state, preview) {
     state.preview = preview;
+  },
+  setMessage(state, message) {
+    state.message = message;
   }
 }
 
