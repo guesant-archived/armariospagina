@@ -16,6 +16,9 @@ export default {
     GalleryTemplates,
     GallerySources,
     GeneratorCore
+  },
+  async mounted() {
+    await this.$store.dispatch('gallery/loadInfo');
   }
 }
 </script>
