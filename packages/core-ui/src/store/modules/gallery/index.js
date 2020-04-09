@@ -1,5 +1,5 @@
 import unfetch from 'unfetch';
-const VUE_APP_GALLERY_URL = process.env;
+const { VUE_APP_GALLERY_URL } = process.env;
 const state = {
   awsinfo: {
     templates: {
