@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import generator from './modules/generator'
 import settings from './modules/settings'
 import gallery from './modules/gallery'
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
   modules: {
     gallery,
     settings,
+    generator
   },
   strict: debug
 })
