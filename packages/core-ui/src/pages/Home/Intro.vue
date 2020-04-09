@@ -5,12 +5,22 @@
     >
       <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold">AmazôniaGenerator</h1>
 
-      <img class="mt-12" src="@/assets/images/pho01-print.jpg" alt="Captura de tela da rede social Facebook que mostra um comentário. 'Armários (ok) amazônia grupo' - Palhaço." />
+      <img class="mt-12" v-lazy="asset01" alt="Captura de tela da rede social Facebook que mostra um comentário. 'Armários (ok) amazônia grupo' - Palhaço." />
     </div>
 
     <div class="intro-bg_filter"></div>
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      asset01: require('@/assets/images/pho01-print.jpg')
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .intro-bg {
