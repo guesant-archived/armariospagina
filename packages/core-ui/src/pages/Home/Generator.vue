@@ -1,7 +1,7 @@
 <template>
   <div>
     <GalleryTemplates />
-    <GeneratorCore />
+    <GeneratorCore id="generatorcore" />
     <GallerySources />
   </div>
 </template>

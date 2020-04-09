@@ -60,6 +60,8 @@ export default {
       sources[+this.selection.slice(2)] = this.source;
       this.updateSources(sources);
       this.close();
+      const element = document.getElementById("generatorcore");
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }
 }

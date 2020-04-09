@@ -63,6 +63,8 @@ export default {
       'loadTemplate'
     ]),
     async setTemplate(i) {
+      const element = document.getElementById("generatorcore");
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
 
       const { VUE_APP_GALLERY_URL } = process.env;
 
