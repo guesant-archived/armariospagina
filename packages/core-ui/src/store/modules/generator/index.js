@@ -1,4 +1,4 @@
-import armariosCore from '@armariospagina/core';
+import armariosCore from '@/lib/armarios-bundle.js';
 
 const state = {
   preview: '',
