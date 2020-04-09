@@ -4,9 +4,9 @@
       <p>SOURCES</p>
     </div>
     <div class="p-3">
-      <div v-if="sources.length >= 1">
+      <div v-if="dataSources.length >= 1">
         <ul>
-          <SourceManager v-for="(_, sourceidx) in sources"
+          <SourceManager v-for="(_, sourceidx) in dataSources"
             :key="`gallery-source-${sourceidx}`" :sourceidx="sourceidx" />
         </ul>
       </div>
@@ -24,7 +24,7 @@ export default {
     SourceManager
   },
   computed: mapGetters({
-    sources: 'generator/sources'
+    dataSources: 'generator/dataSources'
   })
 }
 </script>

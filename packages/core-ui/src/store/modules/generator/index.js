@@ -7,17 +7,21 @@ const state = {
       base: '',
       sources: []
     },
-    sources: ['']
+    sources: []
   }
 }
 
 // getters
 const getters = {
-  sources(state) {
+  dataSources(state) {
     if (state.selectedTemplate.data) {
       return state.selectedTemplate.data.sources || [];
     }
     return [];
+  },
+  sources(state) {
+    return state.selectedTemplate.sources || [];
+  },
   }
 }
 

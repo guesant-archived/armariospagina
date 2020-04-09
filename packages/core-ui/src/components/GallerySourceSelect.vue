@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      sources: 'generator/sources'
+      sources: 'generator/dataSources'
     }),
   },
   data() {
