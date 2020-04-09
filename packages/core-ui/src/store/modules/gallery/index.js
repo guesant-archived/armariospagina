@@ -11,7 +11,7 @@ const state = {
     pngFiles: []
   },
   pagination: {
-    itemsPerPage: 12,
+    itemsPerPage: 6,
     templates: {
       currentPage: 1,
       files: []
