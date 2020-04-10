@@ -52,7 +52,7 @@ export default {
       }
 
       if (this.currentPage === this.totalPages) {
-        return this.totalPages - this.maxVisibleButtons;
+        return this.totalPages - this.maxVisibleButtons + 1;
       }
 
       return this.currentPage - 1;
