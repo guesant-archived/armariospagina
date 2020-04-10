@@ -14,7 +14,7 @@
               @click="setTemplate(i)"
               class="h-full w-full object-cover"
               :src="i"
-              :alt="`Source ${idx+1}`"
+              :alt="sourceIdx(i) && `Template ${sourceIdx(i)}`"
             />
           </GalleryListItem>
         </GalleryList>
@@ -39,6 +39,8 @@ import GalleryList from '@/components/GalleryList.vue';
 import GalleryListItem from '@/components/GalleryListItem.vue';
 import GalleryPagination from '@/components/GalleryPagination.vue';
 
+const sourceIdx = (url) => url.slice(url.lastIndexOf('/base-') + 6, url.lastIndexOf('.'));
+
 export default {
   components: {
     Gallery,
@@ -56,6 +58,7 @@ export default {
     })
   },
   methods: {
+    sourceIdx,
     ...mapActions('gallery', [
       'changePage'
     ]),
@@ -68,7 +71,7 @@ export default {
 
       const { VUE_APP_GALLERY_URL } = process.env;
 
-      const idx = i.slice(i.lastIndexOf('/base-') + 6, i.lastIndexOf('.'))
+      const idx = this.sourceIdx(i);
       const templateBase = `${VUE_APP_GALLERY_URL}/gallery/templates`;
       const url = `${templateBase}/template-${idx}.json`;
 
@@ -82,7 +85,7 @@ export default {
         sourceCopy.compose.end = [+sourceCopy.compose.end[0], +sourceCopy.compose.end[1]]
 
         return sourceCopy;
-      })
+      });
       this.loadTemplate(JSON.stringify(template));
       this.$store.commit('generator/setMessage', '');
     }

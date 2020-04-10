@@ -7,7 +7,7 @@
             <img
               class="h-full w-full object-cover"
               :src="i"
-              :alt="`Source ${idx+1}`"
+              :alt="`Source ${sourceIdx(i)}`"
               @click="modal.show = true; modal.source=i"
             />
           </GalleryListItem>
@@ -34,6 +34,7 @@ import GalleryList from '@/components/GalleryList.vue';
 import GalleryListItem from '@/components/GalleryListItem.vue';
 import GalleryPagination from '@/components/GalleryPagination.vue';
 import GallerySourceSelect from '@/components/GallerySourceSelect.vue';
+const sourceIdx = (url) => url.slice(url.lastIndexOf('/source-') + 8, url.lastIndexOf('.'))
 
 export default {
   components: {
@@ -64,6 +65,7 @@ export default {
     }
   },
   methods: {
+    sourceIdx,
     ...mapActions('gallery', [
       'changePage'
     ]),
