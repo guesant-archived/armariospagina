@@ -6,4 +6,5 @@ export interface ArmariosPaginaCoreOptions {
   write?: string;
   strict: true;
   allowArbitraryFxExecution: false;
+  autoMask: true;
 }

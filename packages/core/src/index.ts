@@ -26,8 +26,17 @@ export default async (options: ArmariosPaginaCoreOptions) => {
   const assert = generateValidator(options);
   assert(assertions.optionsValidate, options);
 
-  const { template, sources } = options;
+  const { autoMask = true, template, sources } = options;
   const base = await loadJimp(template.base);
+  const globalMask = autoMask && base.clone();
+  if (autoMask) {
+    globalMask.scan(0, 0, globalMask.bitmap.width, globalMask.bitmap.height, function(_, __, idx) {
+      const alpha = this.bitmap.data[idx + 3];
+      this.bitmap.data[idx + 0] = 255 - alpha;
+      this.bitmap.data[idx + 1] = 255 - alpha;
+      this.bitmap.data[idx + 2] = 255 - alpha;
+    });
+  }
 
   for (const i in template.sources) {
     const model = template.sources[i];
@@ -49,6 +58,9 @@ export default async (options: ArmariosPaginaCoreOptions) => {
     // apply mask to the plank
     if (mask) {
       plank.mask(mask, 0, 0);
+    }
+    if (autoMask) {
+      plank.mask(globalMask, 0, 0);
     }
 
     // apply fx to the plank
