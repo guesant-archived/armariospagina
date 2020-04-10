@@ -1,9 +1,15 @@
 <template>
-  <div id="app">
-    App.vue
+  <div>
+    <Home />
   </div>
 </template>
 
-<style lang="scss">
-@import url("~@/assets/scss/starter.scss");
-</style>
+<script>
+import Home from '@/pages/Home.vue';
+
+export default {
+  components: {
+    Home
+  }
+}
+</script>
