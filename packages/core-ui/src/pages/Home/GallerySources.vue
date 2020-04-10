@@ -6,7 +6,7 @@
           <GalleryListItem v-for="(i, idx) in baseFiles" :key="idx">
             <img
               class="h-full w-full object-cover"
-              v-lazy="i"
+              :src="i"
               :alt="`Source ${idx+1}`"
               @click="modal.show = true; modal.source=i"
             />

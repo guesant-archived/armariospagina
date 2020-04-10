@@ -13,7 +13,7 @@
             <img
               @click="setTemplate(i)"
               class="h-full w-full object-cover"
-              v-lazy="i"
+              :src="i"
               :alt="`Source ${idx+1}`"
             />
           </GalleryListItem>
