@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 import VueLazyload from 'vue-lazyload'
 import './registerServiceWorker';
+import './assets/tailwind.css';
 
 Vue.use(VueLazyload);
 Vue.config.productionTip = false
