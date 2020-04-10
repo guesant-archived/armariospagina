@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      sources: 'generator/sources'
+      dataSources: 'generator/dataSources'
     }),
     fxInfo() {
       return fxParams[this.fx[0]]
@@ -47,7 +47,7 @@ export default {
       'updateSources'
     ]),
     parameterChange(parameterIdx, value) {
-      const localSources = [...this.sources];
+      const localSources = [...this.dataSources];
       const apply = this.fxInfo[parameterIdx][1] || (a => a);
 
       const fx = this.fx;
@@ -57,7 +57,7 @@ export default {
       this.updateSources(localSources);
     },
     removeFx() {
-      const localSources = [...this.sources];
+      const localSources = [...this.dataSources];
       localSources[this.sourceidx].preFx.splice(this.fxidx, 1);
       this.updateSources(localSources);
     }

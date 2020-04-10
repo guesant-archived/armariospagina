@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      sources: 'generator/sources'
+      dataSources: 'generator/dataSources'
     }),
   },
   data() {
@@ -39,9 +39,8 @@ export default {
     ...mapActions('generator', [
       'updateSources'
     ]),
-
     addFx(sourceidx) {
-      const localSources = [...this.sources];
+      const localSources = [...this.dataSources];
       if (!Object.prototype.hasOwnProperty.call(localSources[sourceidx], 'preFx')) {
         localSources[sourceidx].preFx = [];
       }
