@@ -4,12 +4,15 @@
       <div>
         <GalleryList>
           <GalleryListItem v-for="(i, idx) in baseFiles" :key="idx">
-            <img
-              class="h-full w-full object-cover"
-              :src="i"
-              :alt="`Source ${sourceIdx(i)}`"
-              @click="modal.show = true; modal.source=i"
-            />
+            <div @click="modal.show = true; modal.source=i">
+              <UIImage
+                :imgAttrs="{
+                class: 'h-24 md:h-56 w-full object-cover',
+                src: i,
+                alt: sourceIdx(i) && `Source ${sourceIdx(i)}`
+              }"
+              />
+            </div>
           </GalleryListItem>
         </GalleryList>
       </div>
@@ -29,6 +32,7 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex';
+import UIImage from '@/components/Image.vue';
 import Gallery from '@/components/Gallery.vue';
 import GalleryList from '@/components/GalleryList.vue';
 import GalleryListItem from '@/components/GalleryListItem.vue';
@@ -38,6 +42,7 @@ const sourceIdx = (url) => url.slice(url.lastIndexOf('/source-') + 8, url.lastIn
 
 export default {
   components: {
+    UIImage,
     Gallery,
     GalleryList,
     GalleryListItem,

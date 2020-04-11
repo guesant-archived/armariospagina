@@ -10,12 +10,15 @@
       <div>
         <GalleryList>
           <GalleryListItem v-for="(i, idx) in baseFiles" :key="idx" :liIndex="idx+1">
-            <img
-              @click="setTemplate(i)"
-              class="h-full w-full object-cover"
-              :src="i"
-              :alt="sourceIdx(i) && `Template ${sourceIdx(i)}`"
-            />
+            <div @click="setTemplate(i)">
+              <UIImage
+                :imgAttrs="{
+                class: 'h-24 md:h-56 w-full object-cover',
+                src: i,
+                alt: sourceIdx(i) && `Template ${sourceIdx(i)}`
+              }"
+              />
+            </div>
           </GalleryListItem>
         </GalleryList>
       </div>
@@ -34,6 +37,7 @@
 <script>
 import unfetch from 'unfetch';
 import { mapState, mapActions } from 'vuex';
+import UIImage from '@/components/Image.vue';
 import Gallery from '@/components/Gallery.vue';
 import GalleryList from '@/components/GalleryList.vue';
 import GalleryListItem from '@/components/GalleryListItem.vue';
@@ -43,6 +47,7 @@ const sourceIdx = (url) => url.slice(url.lastIndexOf('/base-') + 6, url.lastInde
 
 export default {
   components: {
+    UIImage,
     Gallery,
     GalleryList,
     GalleryListItem,
@@ -87,7 +92,7 @@ export default {
         return sourceCopy;
       });
       this.loadTemplate(JSON.stringify(template));
-      this.$store.commit('generator/setMessage', '');
+      // this.$store.commit('generator/setMessage', '');
     }
   }
 }
