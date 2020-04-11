@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="value"
+    v-show="value"
     class="fixed inset-0 z-10 flex items-center justify-center w-full h-full bg-gray-900 feijao"
     :style="{ backgroundImage: `url('${source}')` }"
   >
@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      sources: 'generator/dataSources'
+      sources: 'generator/sources'
     }),
   },
   data() {

@@ -18,12 +18,12 @@
               <p class="text-center font-bold">por favor, selecione um template</p>
             </div>
 
-            <div v-else-if="(generator.selectedTemplate.sources||[]).filter(i => i).length < generator.selectedTemplate.data.sources.length">
-              <p class="text-center font-bold">O template necessita de {{generator.selectedTemplate.data.sources.length}} source{{generator.selectedTemplate.data.sources.length === 1 ? '' : 's'}}.</p>
-            </div>
-
             <div v-else class="flex justify-center text-center flex-col">
-              <a class="font-bold text-xs p-2 rounded" download="armariosmeme.png" :href="generator.preview">Baixar Imagem</a>
+              <a
+                class="font-bold text-xs p-2 rounded"
+                :download="`armarios-${generator.preview[0]||''}${Math.round(Math.random()*1000000)}.jpg`"
+                :href="generator.preview"
+              >Baixar Imagem</a>
               <button class="font-bold text-xs p-2 rounded" @click="preview">Atualizar preview</button>
             </div>
           </div>

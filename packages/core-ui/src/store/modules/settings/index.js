@@ -1,7 +1,7 @@
 const state = {
   options: {
     preview: true,
-    prefetch: true
+    canvas: true
   }
 }
 

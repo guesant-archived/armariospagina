@@ -20,7 +20,8 @@ const state = {
       currentPage: 1,
       files: []
     }
-  }
+  },
+  blobCache: {}
 }
 
 // getters
@@ -80,6 +81,9 @@ const mutations = {
   },
   setResourceFile(state, { resource, url, index }) {
     state.pagination[resource].files[index] = url;
+  },
+  setBlobCache(state, { url, blobUrl }) {
+    state.blobCache[url] = blobUrl;
   }
 }
 
