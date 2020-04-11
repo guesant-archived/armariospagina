@@ -37,8 +37,7 @@ const actions = {
     return await (armarios[rootState.settings.options.canvas ? 'canvasRender' : 'serverRender'])(options)
       .then(img => commit('setPreview', img))
       .then(() => commit('setMessage', ''))
-      .catch(err => {
-        console.log(err);
+      .catch(() => {
         commit('setMessage', 'Houve um erro na geração do preview')
       });
   },

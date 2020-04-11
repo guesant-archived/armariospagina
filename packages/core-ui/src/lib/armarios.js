@@ -3,9 +3,7 @@ import b64toBlob from './b64-to-blob';
 import store from '../store';
 
 const getBlobUrl = async (url) => {
-  console.log('generating blob url...');
   if (store.state.gallery.blobCache[url]) {
-    console.log('blob url already cached!');
     return store.state.gallery.blobCache[url];
   }
 
@@ -24,7 +22,6 @@ const getBlobUrl = async (url) => {
   const blob = b64toBlob(b64, contentType);
   const blobUrl = URL.createObjectURL(blob);
 
-  console.log('blob url generated!');
   store.commit('gallery/setBlobCache', { url, blobUrl });
   return blobUrl;
 }
@@ -44,7 +41,6 @@ const loadImage = src => {
 }
 
 export const canvasRender = async (options) => {
-  console.log('preview using canvasRender')
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   const base = await loadImage(options.template.base);
